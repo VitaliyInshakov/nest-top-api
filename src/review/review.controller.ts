@@ -13,7 +13,7 @@ export class ReviewController {
        return this.reviewService.create(dto);
     }
 
-    @Delete('id')
+    @Delete(':id')
     async delete(@Param('id') id: string) {
         const deletedDoc = await this.reviewService.delete(id);
         if (!deletedDoc) {

@@ -41,21 +41,6 @@ describe('AppController (e2e)', () => {
       });
   });
 
-  it('/review/:id (DELETE) - success', () => {
-    return request(app.getHttpServer())
-      .delete('/review/' + createdId)
-      .expect(200);
-  });
-
-  it('/review/:id (DELETE) - fail', () => {
-    return request(app.getHttpServer())
-      .delete('/review/' + new Types.ObjectId().toHexString())
-      .expect(404, {
-        statusCode: 404,
-        message: REVIEW_NOT_FOUND,
-      });
-  });
-
   it('/review/byProduct/:productId (GET) - success', async (done) => {
     return request(app.getHttpServer())
       .get('/review/byProduct/' + productId)
@@ -73,6 +58,21 @@ describe('AppController (e2e)', () => {
       .then(({ body }: request.Response) => {
         expect(body.length).toBe(0);
         done();
+      });
+  });
+
+  it('/review/:id (DELETE) - success', () => {
+    return request(app.getHttpServer())
+      .delete('/review/' + createdId)
+      .expect(200);
+  });
+
+  it('/review/:id (DELETE) - fail', () => {
+    return request(app.getHttpServer())
+      .delete('/review/' + new Types.ObjectId().toHexString())
+      .expect(404, {
+        statusCode: 404,
+        message: REVIEW_NOT_FOUND,
       });
   });
 
