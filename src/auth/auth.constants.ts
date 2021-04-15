@@ -1,0 +1,1 @@
+export const ALREADY_EXIST_ERROR = "User already registered";
